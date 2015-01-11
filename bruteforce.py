@@ -30,11 +30,8 @@ def main(args):
 
             bar.nextItem()
             
-            i += 1
-            if i >= 127:
-                i = 0
-                sys.stdout.write('\r%s %s    ' % (bar, pwd))
-                sys.stdout.flush()
+            sys.stdout.write('\r%s %s    ' % (bar, pwd))
+            sys.stdout.flush()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Bruteforce Keychain master passwords.')
