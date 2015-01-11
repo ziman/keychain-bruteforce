@@ -4,13 +4,16 @@ import subprocess
 import argparse
 import progress
 import sys
+import os
 
 def try_password(keychain, pwd):
-    try:
-        subprocess.check_output(['/usr/bin/security', 'unlock-keychain', '-p', pwd, keychain])
-        return True
-    except subprocess.CalledProcessError:
-        return False
+    DEVNULL = open(os.devnull, 'wb')
+    ret = subprocess.call(
+        ['/usr/bin/security', 'unlock-keychain', '-p', pwd, keychain],
+        stdout=DEVNULL, stderr=DEVNULL,
+    )
+
+    return (ret == 0)
 
 def main(args):
     count = 0
@@ -30,8 +33,10 @@ def main(args):
 
             bar.nextItem()
             
-            sys.stdout.write('\r%s %s    ' % (bar, pwd))
-            sys.stdout.flush()
+            i += 1
+            if i >= 16:
+                sys.stdout.write('\r%s %s    ' % (bar, pwd))
+                sys.stdout.flush()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Bruteforce Keychain master passwords.')
