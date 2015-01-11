@@ -7,7 +7,7 @@ import sys
 
 def try_password(keychain, pwd):
     try:
-        subprocess.check_output(['false', '/usr/bin/security', 'unlock-keychain', '-p', pwd, keychain])
+        subprocess.check_output(['/usr/bin/security', 'unlock-keychain', '-p', pwd, keychain])
         return True
     except subprocess.CalledProcessError:
         return False
