@@ -1,5 +1,10 @@
 #!/usr/bin/env python2
 
+# This program generates various kinds of typos in the given password.
+# 
+# Useful for generating wordlists in case you mistyped your password twice when setting it.
+#
+
 # SUBSTS = {'s': 'ad', 'h': 'jg', ...}
 # PWD = 'my secret original password'
 from substs import SUBSTS, PWD
