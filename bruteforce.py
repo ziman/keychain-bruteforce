@@ -35,6 +35,7 @@ def main(args):
             
             i += 1
             if i >= 16:
+                i = 0 
                 sys.stdout.write('\r%s %s    ' % (bar, pwd))
                 sys.stdout.flush()
 
